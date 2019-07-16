@@ -17,9 +17,5 @@ export default const Factory = {
         }
         let currentClass = Factory.registeredTypes.get(clzName);
         return new currentClass(...args);
-    },
-
-    print() {
-        console.log(...Factory.registeredTypes);
     }
 }

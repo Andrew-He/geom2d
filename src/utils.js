@@ -38,6 +38,17 @@ export const arrayUtil = {
 };
 
 export const functional = {
+    curry: function (func, args = []) {
+        return (...args_) =>
+            (rest => rest.length >= func.length
+                        ? func(...rest)
+                        : functional.curry(func, rest))
+            ([
+                ...args,
+                ...args_
+            ])
+    },
+
     compose: function (...funcs) {
         return predicates.match(funcs)
             .on(funcs => funcs.length == 0, arg => arg)
