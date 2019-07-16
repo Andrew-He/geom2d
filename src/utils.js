@@ -4,6 +4,27 @@
  * @author Andrew He
  */
 
+export const geomUtil = {
+    getBoundingRect: function(points) {
+        const xcoords = arrayUtil.pluck(points, 'x');
+        const ycoords = arrayUtil.pluck(points, 'y');
+        const left = Math.min(...xcoords);
+        const right = Math.max(...xcoords);
+        const top  = Math.min(...ycoords);
+        const bottom  = Math.max(...ycoords);
+        const width = Math.abs(right - left);
+        const height = Math.abs(bottom - top);
+        return {
+            left,
+            right,
+            top,
+            bottom,
+            width,
+            height
+        };
+    }
+
+};
 
 export const arrayUtil = {
     pluck: function (collection, attr) {
@@ -16,7 +37,6 @@ export const arrayUtil = {
 
 };
 
-
 export const functional = {
     compose: function (...funcs) {
         return predicates.match(funcs)
@@ -28,9 +48,7 @@ export const functional = {
     isFunction: function (func) { return Boolean(func && func.constructor && func.call && func.apply); },
 };
 
-
 export const predicates = {
-
     match: x => ({
         on: (pred, fn) => pred(x) ? predicates.matched(fn(x)) : predicates.match(x),
         otherwise: fn => fn(x)
@@ -41,12 +59,13 @@ export const predicates = {
         otherwise: () => x
     }),
 
+    isNumeric: function (value) { return !isNaN(parseFloat(value)) && isFinite(value); },
+
     someEmpty: function (objs = []) { return objs.some(this.isEmptyObj); },
 
     allEmpty:  function (objs = []) { return objs.map(this.isEmptyObj).reduce((a, b) => a && b, true) },
 
-    emptyObj: (obj = {}) => obj === null || Object.keys(obj).length === 0 && obj.constructor === Object,
-
+    emptyObj: (obj = {}) => obj === null || Object.keys(obj).length === 0 && obj.constructor === Object
 };
 
 

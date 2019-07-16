@@ -5,12 +5,13 @@
 
 import Point from './point';
 import Vector from './vector';
-import {arrayUtil} from './utils';
+import {geomUtil} from './utils';
 
 export default class Polygon {
     constructor(...points) {
         this._validate(points);
         this.points = points;
+        this.boundingRect = geomUtil.getBoundingRect(points);
     }
 
     get size() {
@@ -30,19 +31,27 @@ export default class Polygon {
     }
 
     get left() {
-        return Math.min(...arrayUtil.pluck(this.points, 'x'));
+        return this.boundingRect.left;
     }
 
     get right() {
-        return Math.max(...arrayUtil.pluck(this.points, 'x'));
+        return this.boundingRect.right;
     }
 
     get top() {
-        return Math.min(...arrayUtil.pluck(this.points, 'y'));
+        return this.boundingRect.top;
     }
 
     get bottom() {
-        return Math.max(...arrayUtil.pluck(this.points, 'y'));
+        return this.boundingRect.bottom;
+    }
+
+    get width() {
+        return this.boundingRect.width;
+    }
+
+    get height() {
+        return this.boundingRect.height;
     }
 
     get iterator() {

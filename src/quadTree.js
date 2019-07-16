@@ -3,13 +3,9 @@
  * @author andrew he 
  */
 
-class Point {
-    constructor(x, y, userData) {
-        this.x = x;
-        this.y = y;
-        this.userData = userData;
-    }
-}
+import Rectangle from './rectangle';
+import Point from './point';
+
 
 class Rectangle {
     constructor(x, y, w, h) {
@@ -56,10 +52,10 @@ export class QuadTree {
     }
 
     subdivide() {
-        let x = this.boundary.x;
-        let y = this.boundary.y;
-        let w = this.boundary.w / 2;
-        let h = this.boundary.h / 2;
+        let x = this.boundary.left;
+        let y = this.boundary.top;
+        let w = this.boundary.width / 2;
+        let h = this.boundary.height / 2;
 
         let ne = new Rectangle(x + w, y - h, w, h);
         this.northeast = new QuadTree(ne, this.capacity);
