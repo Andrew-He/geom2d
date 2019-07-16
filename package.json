@@ -1,0 +1,37 @@
+{
+  "name": "geom2d",
+  "version": "1.0.0",
+  "description": "computational geometry library for 2D space with shapes like line segments, polygon circle and etc",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:coveralls": "jest --coverage --coverageReporters=text-lcov | coveralls"
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Andrew-He/geom2d.git"
+  },
+  "keywords": [
+    "computation",
+    "geometry",
+    "vector",
+    "area",
+    "convex",
+    "hull",
+    "intersection",
+    "points",
+    "collision"
+  ],
+  "author": "jinxin he",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Andrew-He/geom2d/issues"
+  },
+  "homepage": "https://github.com/Andrew-He/geom2d#readme",
+  "devDependencies": {
+    "coveralls": "^3.0.5"
+  }
+}
