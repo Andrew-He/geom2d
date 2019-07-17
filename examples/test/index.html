@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="processor.js"></script>
+    <script type="text/javascript" src="shape.js"></script>
+    <style>
+      body {
+        background: black;
+        color:#CCCCCC; 
+      }
+      #c2 {
+        /*background-image: url(logo.png);*/
+        background-repeat: no-repeat;
+      }
+      div {
+        float: left;
+        border :1px solid #444444;
+        padding:10px;
+        margin: 10px;
+        background:#3B3B3B;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div width='160' height="150">
+      <video id="video" controls="true" loop="true"></video>
+    </div>
+    <div style="display: block; position: relative;">
+      <div>
+        <canvas id="c2" style="position: absolute; top: 0; left: 0; z-index: 0"></canvas>
+        <canvas id="c3" style="position: absolute; top: 0; left: 0; z-index: 1"></canvas>
+      </div>
+    </div>
+    <div style="position: fixed; bottom: 20px; left: 30px; height: 40px; display: flex; align-items: center">
+      <input type="file" accept="video/*" id='file_input'>
+      <div id="message"></div>
+      <div id="color" style="width:200px;height:auto"></div>
+    </div>
+  </body>
+</html>
