@@ -56,7 +56,6 @@ export const functional = {
             .otherwise(funcs => funcs.reduce((f1, f2) => (...args) => f1(f2(...args))));
     },
 
-    isFunction: function (func) { return Boolean(func && func.constructor && func.call && func.apply); },
 };
 
 export const predicates = {
@@ -76,7 +75,11 @@ export const predicates = {
 
     allEmpty:  function (objs = []) { return objs.map(this.isEmptyObj).reduce((a, b) => a && b, true) },
 
-    emptyObj: (obj = {}) => obj === null || Object.keys(obj).length === 0 && obj.constructor === Object
+    emptyObj: (obj = {}) => obj === null || Object.keys(obj).length === 0 && obj.constructor === Object,
+
+    isFunction: function (func) { return Boolean(func && func.constructor && func.call && func.apply); },
+
+    isArray: function(obj) { return ( typeof Array.isArray === 'undefined') ? Object.prototype.toString.call(obj) === '[object Array]' : Array.isArray(obj); },
 };
 
 
